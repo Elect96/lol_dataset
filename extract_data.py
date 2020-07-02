@@ -1,6 +1,8 @@
-# This file is meant to extract champions information from the current patch provided to it
-import os
+""" Purpose of the file:
+This program extracts champions's data from the current patch provided and then saves it as a json file
+"""
 import json
+import os
 
 # data path
 path = "D:\\Python\\League of Legends\\dragontail-10.13.1\\10.13.1\\data\\en_GB\\champion\\"
@@ -21,5 +23,6 @@ for dirs, subdirs, files in os.walk(path):
             # save every champion to a dictionary
             champions[champion_name] = data.get("data").get(champion_name).get("stats")
 
-# print(champions)
-# TODO: save champions into a text file
+# save champions to a file
+with open('champions.json', 'w', encoding='utf-8') as f:
+    json.dump(champions, f, ensure_ascii=False, indent=4)
